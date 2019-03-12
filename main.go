@@ -1,26 +1,35 @@
 package main
 
 import (
-	"github.com/mvcatsifma/golang-module-walker/a"
-	"github.com/mvcatsifma/golang-module-walker/b"
+	"fmt"
 	"github.com/mvcatsifma/golang-module-walker/core"
+	"github.com/mvcatsifma/golang-module-walker/root"
 	"log"
 	"os"
 	"os/signal"
 )
 
 func main() {
-	var modules []core.IModule
+	r := root.BuildModule()
+	err := r.Start()
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	modules = append(modules, a.BuildModule())
-	modules = append(modules, b.BuildModule())
-
-	// start modules
-	for _, m := range modules {
-		err := m.Start()
-		if err != nil {
-			log.Fatal(err)
+	var links []core.Link
+	core.Inspect(r, func(module core.IModule) bool {
+		if module == nil {
+			return false
 		}
+		fmt.Printf("inspecting module: %v \n", module.GetName())
+		for _, l := range module.GetRootLinks() {
+			links = append(links, l)
+		}
+		return true
+	})
+
+	for _, l := range links {
+		fmt.Println(l)
 	}
 
 	// create a channel to receive incoming OS interrupts (such as Ctrl-C):
@@ -31,10 +40,8 @@ func main() {
 	<-osInterruptChannel
 
 	// terminate  modules
-	for _, m := range modules {
-		err := m.Terminate()
-		if err != nil {
-			log.Println(err)
-		}
+	err = r.Terminate()
+	if err != nil {
+		log.Println(err)
 	}
 }
