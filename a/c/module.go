@@ -1,23 +1,17 @@
 package c
 
 import (
-	"fmt"
+	"github.com/mvcatsifma/golang-module-walker/core"
 )
 
 type module struct {
+	core.Module
 	Api *api
 }
 
 func NewModule(api *api) *module {
-	return &module{Api: api}
-}
-
-func (this *module) Start() error {
-	fmt.Println("c - start")
-	return nil
-}
-
-func (this *module) Terminate() error {
-	fmt.Println("c - terminate")
-	return nil
+	return &module{
+		Module: core.Module{Name: "C"},
+		Api:    api,
+	}
 }
