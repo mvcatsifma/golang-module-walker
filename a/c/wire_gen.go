@@ -9,6 +9,6 @@ package c
 
 func BuildModule() *module {
 	cApi := NewApi()
-	cModule := NewModule(cApi)
+	cModule := NewC(cApi)
 	return cModule
 }

@@ -1,12 +1,12 @@
 //+build wireinject
 
-package b
+package db
 
 import (
 	"github.com/google/wire"
 )
 
 func BuildModule() *module {
-	wire.Build(NewApi, NewModule)
+	wire.Build(NewApi, NewDB)
 	return &module{}
 }

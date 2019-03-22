@@ -7,8 +7,8 @@ package root
 
 // Injectors from wiring.go:
 
-func BuildModule() *module {
+func BuildModule() *Root {
 	rootApi := NewApi()
-	rootModule := NewModule(rootApi)
-	return rootModule
+	root := NewRoot(rootApi)
+	return root
 }

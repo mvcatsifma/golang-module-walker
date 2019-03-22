@@ -7,6 +7,6 @@ import (
 )
 
 func BuildModule() *module {
-	wire.Build(NewApi, NewModule)
+	wire.Build(NewApi, NewC)
 	return &module{}
 }

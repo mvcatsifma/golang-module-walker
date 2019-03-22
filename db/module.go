@@ -1,4 +1,4 @@
-package c
+package db
 
 import (
 	"github.com/mvcatsifma/golang-module-walker/core"
@@ -9,11 +9,10 @@ type module struct {
 	Api *api
 }
 
-func NewC(api *api) *module {
+func NewDB(api *api) *module {
 	m := &module{
-		Module: core.MakeModule("C", api),
+		Module: core.MakeModule("DB", api),
 		Api:    api,
 	}
-	m.Children = make([]core.IModule, 0)
 	return m
 }

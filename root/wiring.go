@@ -6,7 +6,7 @@ import (
 	"github.com/google/wire"
 )
 
-func BuildModule() *module {
-	wire.Build(NewApi, NewModule)
-	return &module{}
+func BuildModule() *Root {
+	wire.Build(NewApi, NewRoot)
+	return &Root{}
 }

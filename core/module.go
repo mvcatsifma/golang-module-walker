@@ -9,14 +9,25 @@ type IModule interface {
 	Start() error
 	Terminate() error
 	GetName() string
+	GetApi() IApi
 	GetChildren() []IModule
-	GetRootLinks() []Link
 }
 
 type Module struct {
-	Name      string
-	Modules   []IModule
-	RootLinks []Link
+	Name     string
+	Children []IModule
+	Api      IApi
+}
+
+func MakeModule(name string, api IApi) Module {
+	return Module{
+		Name: name,
+		Api:  api,
+	}
+}
+
+func (this *Module) GetApi() IApi {
+	return this.Api
 }
 
 func (this *Module) GetName() string {
@@ -24,15 +35,11 @@ func (this *Module) GetName() string {
 }
 
 func (this *Module) GetChildren() []IModule {
-	return this.Modules
-}
-
-func (this *Module) GetRootLinks() []Link {
-	return this.RootLinks
+	return this.Children
 }
 
 func (this *Module) Start() error {
-	for _, m := range this.Modules {
+	for _, m := range this.Children {
 		err := m.Start()
 		if err != nil {
 			log.Fatal(err)
@@ -45,7 +52,7 @@ func (this *Module) Start() error {
 }
 
 func (this *Module) Terminate() error {
-	for _, m := range this.Modules {
+	for _, m := range this.Children {
 		err := m.Terminate()
 		if err != nil {
 			log.Println(err)

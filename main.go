@@ -9,6 +9,9 @@ import (
 	"os/signal"
 )
 
+// todo:
+// - links should be in Api
+// - register module interface for lookup
 func main() {
 	r := root.BuildModule()
 	err := r.Start()
@@ -16,19 +19,26 @@ func main() {
 		log.Fatal(err)
 	}
 
-	var links []core.Link
 	core.Inspect(r, func(module core.IModule) bool {
 		if module == nil {
 			return false
 		}
+
 		fmt.Printf("inspecting module: %v \n", module.GetName())
-		for _, l := range module.GetRootLinks() {
-			links = append(links, l)
+
+		switch module.(type) {
+		case *root.Root:
+		default:
+			if v, ok := module.GetApi().(core.ILinkGetter); ok {
+				for _, l := range v.Get() {
+					r.Api.(*root.Api).Add(l)
+				}
+			}
 		}
 		return true
 	})
 
-	for _, l := range links {
+	for _, l := range r.Api.(*root.Api).RootLinks {
 		fmt.Println(l)
 	}
 

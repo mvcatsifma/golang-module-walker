@@ -5,10 +5,14 @@
 
 package a
 
+import (
+	"github.com/mvcatsifma/golang-module-walker/db"
+)
+
 // Injectors from wiring.go:
 
-func BuildModule() *module {
-	aApi := NewApi()
-	aModule := NewModule(aApi)
+func BuildModule(database db.IDatabase) *module {
+	aApi := NewApi(database)
+	aModule := NewA(aApi)
 	return aModule
 }

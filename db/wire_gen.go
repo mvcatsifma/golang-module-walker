@@ -3,12 +3,12 @@
 //go:generate wire
 //+build !wireinject
 
-package b
+package db
 
 // Injectors from wiring.go:
 
 func BuildModule() *module {
-	bApi := NewApi()
-	bModule := NewModule(bApi)
-	return bModule
+	dbApi := NewApi()
+	dbModule := NewDB(dbApi)
+	return dbModule
 }

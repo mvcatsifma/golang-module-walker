@@ -10,11 +10,11 @@ type module struct {
 	Api     *api
 }
 
-func NewModule(api *api) *module {
+func NewA(api *api) *module {
 	m := &module{
-		Module: core.Module{Name: "A"},
+		Module: core.MakeModule("A", api),
 		Api:    api,
 	}
-	m.Modules = append(m.Modules, c.BuildModule())
+	m.Children = append(m.Children, c.BuildModule())
 	return m
 }
