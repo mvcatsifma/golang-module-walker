@@ -1,4 +1,4 @@
-package a
+package events
 
 import (
 	"github.com/mvcatsifma/golang-module-walker/core"

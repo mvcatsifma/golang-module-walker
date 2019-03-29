@@ -1,6 +1,7 @@
 //+build wireinject
 
-package a
+package events
+
 
 import (
 	"github.com/google/wire"

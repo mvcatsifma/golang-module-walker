@@ -1,6 +1,6 @@
 //+build wireinject
 
-package c
+package receiver
 
 import (
 	"github.com/google/wire"

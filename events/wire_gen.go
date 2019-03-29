@@ -3,7 +3,7 @@
 //go:generate wire
 //+build !wireinject
 
-package a
+package events
 
 import (
 	"github.com/mvcatsifma/golang-module-walker/db"

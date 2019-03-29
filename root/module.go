@@ -1,7 +1,7 @@
 package root
 
 import (
-	"github.com/mvcatsifma/golang-module-walker/a"
+	"github.com/mvcatsifma/golang-module-walker/events"
 	"github.com/mvcatsifma/golang-module-walker/config"
 	"github.com/mvcatsifma/golang-module-walker/db"
 	"github.com/mvcatsifma/golang-module-walker/core"
@@ -20,12 +20,12 @@ func NewRoot(api *api) *Root {
 	}
 	// sub modules
 	conf := config.BuildModule()
-	_ := logging.BuildModule(conf.Config) // todo: use in modules
+	var _ = logging.BuildModule(conf.Config) // todo: use in modules
 	database := db.BuildModule(conf.Config)
 	broker := nats.BuildModule(conf.Config)
 	m.Children = append(m.Children, conf)
 	m.Children = append(m.Children, database)
 	m.Children = append(m.Children, broker)
-	m.Children = append(m.Children, a.BuildModule(database.Api, broker.Api))
+	m.Children = append(m.Children, events.BuildModule(database.Api, broker.Api))
 	return m
 }

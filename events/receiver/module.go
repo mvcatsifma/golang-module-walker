@@ -1,4 +1,4 @@
-package c
+package receiver
 
 import (
 	"github.com/mvcatsifma/golang-module-walker/core"
@@ -12,7 +12,7 @@ type module struct {
 
 func NewC(api *api, db db.IDatabase) *module {
 	m := &module{
-		Module: core.MakeModule("C", api),
+		Module: core.MakeModule("Receiver", api),
 		db:     db,
 	}
 	m.Children = make([]core.IModule, 0)

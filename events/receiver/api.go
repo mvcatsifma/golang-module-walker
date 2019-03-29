@@ -1,4 +1,4 @@
-package c
+package receiver
 
 import "github.com/mvcatsifma/golang-module-walker/core"
 
