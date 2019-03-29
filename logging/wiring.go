@@ -1,6 +1,6 @@
 //+build wireinject
 
-package db
+package logging
 
 import (
 	"github.com/google/wire"
@@ -8,6 +8,6 @@ import (
 )
 
 func BuildModule(config *config.AppConfig) *module {
-	wire.Build(NewApi, NewDB)
+	wire.Build(NewApi, NewConfig)
 	return &module{}
 }

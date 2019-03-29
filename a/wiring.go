@@ -8,7 +8,7 @@ import (
 	"github.com/mvcatsifma/golang-module-walker/nats"
 )
 
-func BuildModule(database db.IDatabase, broker nats.ISubsciber) *module {
+func BuildModule(database db.IDatabase, broker nats.IConnection) *module {
 	wire.Build(NewApi, NewA)
 	return &module{}
 }

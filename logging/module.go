@@ -1,7 +1,6 @@
-package db
+package logging
 
 import (
-	"fmt"
 	"github.com/mvcatsifma/golang-module-walker/config"
 	"github.com/mvcatsifma/golang-module-walker/core"
 )
@@ -11,10 +10,9 @@ type module struct {
 	Api *api
 }
 
-func NewDB(api *api, config *config.AppConfig) *module {
-	fmt.Printf("foo: %v\n", config.Foo)
+func NewConfig(api *api, config *config.AppConfig) *module {
 	m := &module{
-		Module: core.MakeModule("DB", api),
+		Module: core.MakeModule("Logging", api),
 	}
 	return m
 }

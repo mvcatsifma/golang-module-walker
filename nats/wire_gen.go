@@ -5,10 +5,14 @@
 
 package nats
 
+import (
+	"github.com/mvcatsifma/golang-module-walker/config"
+)
+
 // Injectors from wiring.go:
 
-func BuildModule() *module {
+func BuildModule(config2 *config.AppConfig) *module {
 	natsApi := NewApi()
-	natsModule := NewDB(natsApi)
+	natsModule := NewDB(natsApi, config2)
 	return natsModule
 }

@@ -12,7 +12,7 @@ import (
 
 // Injectors from wiring.go:
 
-func BuildModule(database db.IDatabase, broker nats.ISubsciber) *module {
+func BuildModule(database db.IDatabase, broker nats.IConnection) *module {
 	aApi := NewApi()
 	aModule := NewA(aApi, database, broker)
 	return aModule

@@ -10,10 +10,10 @@ import (
 type module struct {
 	core.Module
 	db     db.IDatabase
-	broker nats.ISubsciber
+	broker nats.IConnection
 }
 
-func NewA(api *api, db db.IDatabase, broker nats.ISubsciber) *module {
+func NewA(api *api, db db.IDatabase, broker nats.IConnection) *module {
 	m := &module{
 		Module: core.MakeModule("A", api),
 		db:     db,

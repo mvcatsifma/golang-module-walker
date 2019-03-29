@@ -3,7 +3,7 @@
 //go:generate wire
 //+build !wireinject
 
-package db
+package logging
 
 import (
 	"github.com/mvcatsifma/golang-module-walker/config"
@@ -12,7 +12,7 @@ import (
 // Injectors from wiring.go:
 
 func BuildModule(config2 *config.AppConfig) *module {
-	dbApi := NewApi()
-	dbModule := NewDB(dbApi, config2)
-	return dbModule
+	loggingApi := NewApi()
+	loggingModule := NewConfig(loggingApi, config2)
+	return loggingModule
 }

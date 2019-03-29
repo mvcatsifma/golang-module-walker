@@ -1,17 +1,29 @@
 package db
 
 import (
+	"database/sql"
 	"fmt"
 	"github.com/mvcatsifma/golang-module-walker/core"
 )
+
+type IDatabase interface {
+	GetDB() (*sql.DB, error)
+	Open() (*sql.DB, error)
+	Close() error
+}
 
 type api struct {
 	core.Api
 }
 
-func (*api) Open() error {
+func (a *api) GetDB() (*sql.DB, error) {
+	fmt.Println("GetDB")
+	return nil, nil
+}
+
+func (*api) Open() (*sql.DB, error) {
 	fmt.Println("Open")
-	return nil
+	return nil, nil
 }
 
 func (*api) Close() error {
@@ -21,9 +33,4 @@ func (*api) Close() error {
 
 func NewApi() *api {
 	return &api{}
-}
-
-type IDatabase interface {
-	Open() error
-	Close() error
 }
