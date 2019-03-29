@@ -29,16 +29,14 @@ func main() {
 		switch module.(type) {
 		case *root.Root:
 		default:
-			if v, ok := module.GetApi().(core.ILinkGetter); ok {
-				for _, l := range v.Get() {
-					r.Api.(*root.Api).Add(l)
-				}
+			for _, l := range module.GetApi().GetLinks() {
+				r.Api.(core.LinkAdder).Add(l)
 			}
 		}
 		return true
 	})
 
-	for _, l := range r.Api.(*root.Api).RootLinks {
+	for _, l := range r.Api.GetLinks() {
 		fmt.Println(l)
 	}
 

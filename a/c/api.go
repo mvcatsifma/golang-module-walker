@@ -7,6 +7,11 @@ type api struct {
 }
 
 func NewApi() *api {
+	links := []core.Link{
+		{"rel3": "/c/a"},
+		{"rel4": "/c/a"},
+	}
 	return &api{
+		Api: core.MakeApi(links),
 	}
 }

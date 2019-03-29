@@ -2,20 +2,20 @@ package root
 
 import "github.com/mvcatsifma/golang-module-walker/core"
 
-type Api struct {
+type api struct {
 	core.Api
 }
 
-func (this *Api) Add(link core.Link) {
-	this.RootLinks = append(this.RootLinks, link)
+func (this *api) Add(link core.Link) {
+	this.Links = append(this.Links, link)
 }
 
-func NewApi() *Api {
+func NewApi() *api {
 	links := []core.Link{
 		{"rel1": "/root/a"},
 		{"rel2": "/root/a"},
 	}
-	return &Api{
+	return &api{
 		Api: core.MakeApi(links),
 	}
 }

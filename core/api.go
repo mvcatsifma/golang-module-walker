@@ -1,21 +1,23 @@
 package core
 
 type IApi interface {
-	IsApi()
+	GetLinks() []Link
+}
+
+type LinkAdder interface {
+	Add(link Link)
 }
 
 type Api struct {
-	RootLinks []Link
+	Links []Link
 }
-
-func (this *Api) IsApi() {}
 
 func MakeApi(links []Link) Api {
 	return Api{
-		RootLinks: links,
+		Links: links,
 	}
 }
 
-func (this *Api) Get() []Link {
-	return this.RootLinks
+func (this *Api) GetLinks() []Link {
+	return this.Links
 }

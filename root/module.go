@@ -8,9 +8,10 @@ import (
 
 type Root struct {
 	core.Module
+	Links []core.Link
 }
 
-func NewRoot(api *Api) *Root {
+func NewRoot(api *api) *Root {
 	m := &Root{
 		Module: core.MakeModule("Root", api),
 	}
