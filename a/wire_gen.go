@@ -7,12 +7,13 @@ package a
 
 import (
 	"github.com/mvcatsifma/golang-module-walker/db"
+	"github.com/mvcatsifma/golang-module-walker/nats"
 )
 
 // Injectors from wiring.go:
 
-func BuildModule(database db.IDatabase) *module {
-	aApi := NewApi(database)
-	aModule := NewA(aApi)
+func BuildModule(database db.IDatabase, broker nats.ISubsciber) *module {
+	aApi := NewApi()
+	aModule := NewA(aApi, database, broker)
 	return aModule
 }

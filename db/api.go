@@ -10,12 +10,12 @@ type api struct {
 }
 
 func (*api) Open() error {
-	fmt.Println("Opening database connnection")
+	fmt.Println("Open")
 	return nil
 }
 
 func (*api) Close() error {
-	fmt.Println("Closing database")
+	fmt.Println("Close")
 	return nil
 }
 

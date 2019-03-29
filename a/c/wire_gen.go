@@ -5,10 +5,14 @@
 
 package c
 
+import (
+	"github.com/mvcatsifma/golang-module-walker/db"
+)
+
 // Injectors from wiring.go:
 
-func BuildModule() *module {
+func BuildModule(db2 db.IDatabase) *module {
 	cApi := NewApi()
-	cModule := NewC(cApi)
+	cModule := NewC(cApi, db2)
 	return cModule
 }

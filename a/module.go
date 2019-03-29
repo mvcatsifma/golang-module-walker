@@ -3,18 +3,22 @@ package a
 import (
 	"github.com/mvcatsifma/golang-module-walker/a/c"
 	"github.com/mvcatsifma/golang-module-walker/core"
+	"github.com/mvcatsifma/golang-module-walker/db"
+	"github.com/mvcatsifma/golang-module-walker/nats"
 )
 
 type module struct {
 	core.Module
-	Api     *api
+	db     db.IDatabase
+	broker nats.ISubsciber
 }
 
-func NewA(api *api) *module {
+func NewA(api *api, db db.IDatabase, broker nats.ISubsciber) *module {
 	m := &module{
 		Module: core.MakeModule("A", api),
-		Api:    api,
+		db:     db,
+		broker: broker,
 	}
-	m.Children = append(m.Children, c.BuildModule())
+	m.Children = append(m.Children, c.BuildModule(db))
 	return m
 }

@@ -9,9 +9,6 @@ import (
 	"os/signal"
 )
 
-// todo:
-// - links should be in Api
-// - register module interface for lookup
 func main() {
 	r := root.BuildModule()
 	err := r.Start()

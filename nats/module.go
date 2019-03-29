@@ -1,4 +1,4 @@
-package db
+package nats
 
 import (
 	"github.com/mvcatsifma/golang-module-walker/core"
@@ -11,7 +11,7 @@ type module struct {
 
 func NewDB(api *api) *module {
 	m := &module{
-		Module: core.MakeModule("DB", api),
+		Module: core.MakeModule("NATS", api),
 	}
 	return m
 }
